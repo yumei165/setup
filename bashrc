@@ -32,6 +32,7 @@ alias lssize='du -h --max-depth=1'
 alias findbig='find . -name "*" -size +2000k'
 
 alias gitdiff='\git difftool'
+alias gitlog='\git log -n 25 --pretty=format:"%h - %an, %ar : %s"'
 
 # truncate long dir paths to fit within the terminal width
 #alias truncdir='pwd | sed "s/\(\/[^\/]*\/[^\/]*\/[^\/]*\)\(\/[^\/]*\).*\(\/[^\/]*\/[^\/]*\)$/...\3/g"'
