@@ -93,7 +93,7 @@ gitinit
 
 #smiley prompt
 function prompt {  
-   PS1='\[\e[0;36m\]\u@\h $(smiley) \[\e[0;36m\]\w\[\e[0m\]\n\$ '
+   PS1='\[\e[0;36m\]\u@\h $(smiley) \[\e[0;36m\]\w $(gitbranch) \n\[\e[0m\]\$ '
    smiley ()
    {
        if [ $? = 0 ]; then
@@ -104,6 +104,15 @@ function prompt {
                   return $?;
                    fi
                     }
+   gitbranch ()
+   {
+       echo -en "\e[0;36m"
+       if git rev-parse --is-inside-work-tree 2>/dev/null 1>/dev/null ; then
+         echo -en "("
+         echo -en $(git rev-parse --abbrev-ref HEAD)
+         echo -en ")"
+       fi
+   }
    export PS1
 }
 
