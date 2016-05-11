@@ -2,7 +2,7 @@
 #  /                                          \
 # {                 Alias List                 }
 #  \__________________________________________/
-#
+#     
 
 
 platform=`(uname -a | awk '{print $1}')`
@@ -122,10 +122,6 @@ prompt
 PATH=$HOME/scripts:$PATH
 # improved unix regular command
 PATH=/opt/swt/bin/:$PATH \
-
-# Update the LD_LIBRARY_PATH
-#
-export LD_LIBRARY_PATH=/opt/swt/lib/
 
 alias gnome='gnome-terminal --geometry 140x35 &'
 
