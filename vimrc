@@ -17,7 +17,7 @@ set sw=4  "this is the level of autoindent, adjust to taste
 set cin
 "set foldmethod=indent
 
-" Only use 256 colors on Bloomberg Linux machines.
+" Only use 256 colors on Linux machines.
 " torte is better in 256 colors or gui.
 " darkblue is better in 8 colors
 if match($TERM, "xterm-256color") == 0
@@ -94,7 +94,7 @@ function! Compile()
   if &filetype == 'ocaml'
     !/opt/swt/bin/ocamlbuild '%:t'
   else
-    !/bb/mbig/mbig2725/dlib/dlibtskutil/dlibscripts/dlink --compile '%:t:r'
+    !compile_cmd '%:t:r'
   endif
 endfunction
 
@@ -140,51 +140,14 @@ nnoremap <C-H> <C-W><C-H>
 set splitbelow
 set splitright
 
-map <C-f> :y<Return> :pu<Return> :.!~vkohli/scripts/FunctionLogger.rb <Return>
 
-"This is the otc_indent.vim file to be used
-" Assumes that ocp-indent is in PATH.
-" This can be overriden by setting g:ocp_indent_binary in your .vimrc. Eg.
-"
-" let g:ocp_indent_binary = "/home/jo/bin/ocp-indent.exe"
-"
-
-" function! PreserveExec(expr)
-"   let l:pos = getpos(".")
-"   let l:winview = winsaveview()
-"   try
-"     execute(a:expr)
-"   finally
-"     call setpos(".", l:pos)
-"     call winrestview(l:winview)
-"   endtry
-" endfunction
-" 
-" function! OcpIndentRange() range
-"   let l:ocp_indent_binary = exists("g:ocp_indent_binary") ? g:ocp_indent_binary : "ocp-indent"
-"   call PreserveExec(':%!' . l:ocp_indent_binary . ' -l ' . a:firstline . '-' . a:lastline)
-" endfunction
-" 
-" function! OcpIndentBuffer()
-"   let l:ocp_indent_binary = exists("g:ocp_indent_binary") ? g:ocp_indent_binary : "ocp-indent"
-"   call PreserveExec(':%!' . l:ocp_indent_binary)
-" endfunction
-" 
-" 
-" vnoremap <LocalLeader>i :call OcpIndentRange()<CR>
-" nnoremap <LocalLeader>i :call OcpIndentBuffer()<CR>
-" map == :call OcpIndentRange()<CR>
-" vnoremap = :call OcpIndentRange()<CR>
-"
 "indention set up
 " size of a soft tabstop
 set tabstop=4
-" size of indent
+" size of indent 
 set shiftwidth=4
 " always uses spaces instead of tab
 set expandtab
 set smarttab
 " indentation inside namespace and classes
 set cino=N-s,g0,:0
-
-autocmd FileType ocaml source ocp-indent.vim
